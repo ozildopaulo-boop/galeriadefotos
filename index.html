@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luz da Natureza</title>
+    <style>
+        /* ============================================
+           RESET E FUNDO
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            min-height: 100vh;
+            background-image: url('natureza.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #0d0d0d;
+        }
+
+        /* ============================================
+           PÁGINA PRINCIPAL - IGUAL AO EXEMPLO
+           ============================================ */
+        .pagina-principal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+            padding: 20px;
+        }
+
+        .pagina-principal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.30);
+            z-index: 1;
+        }
+
+        .conteudo-principal {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 700px;
+            padding: 40px;
+        }
+
+        .conteudo-principal h1 {
+            font-size: 5rem;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: 8px;
+            text-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
+            margin-bottom: 15px;
+        }
+
+        .linha {
+            width: 100px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 0 auto 25px;
+        }
+
+        .conteudo-principal .subtitulo {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.15rem;
+            letter-spacing: 4px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .btn-galeria {
+            background: rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.20);
+            color: #ffffff;
+            padding: 18px 52px;
+            font-size: 1.1rem;
+            font-family: 'Georgia', serif;
+            letter-spacing: 3px;
+            cursor: pointer;
+            border-radius: 60px;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            font-weight: 300;
+            text-decoration: none;
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.20);
+        }
+
+        .btn-galeria:hover {
+            background: rgba(255, 255, 255, 0.20);
+            transform: scale(1.05);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .rodape {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.20);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            z-index: 2;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* ============================================
+           GALERIA
+           ============================================ */
+        .pagina-galeria {
+            display: none;
+            padding: 25px;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .pagina-galeria::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 0;
+        }
+
+        .container-galeria {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .topo-galeria {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .voltar {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: 'Georgia', serif;
+        }
+
+        .voltar:hover {
+            color: white;
+        }
+
+        .topo-galeria h1 {
+            color: white;
+            font-weight: 300;
+            font-size: 2.2rem;
+            letter-spacing: 4px;
+        }
+
+        .topo-galeria .sub {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+
+        .btn-admin {
+            color: rgba(255, 255, 255, 0.15);
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: 'Georgia', serif;
+        }
+
+        .btn-admin:hover {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .grid-fotos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 18px;
+        }
+
+        .foto-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(8px);
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .foto-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .foto-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .foto-card .info-card {
+            padding: 12px 14px 14px;
+        }
+
+        .foto-card .info-card h4 {
+            color: white;
+            font-weight: 300;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+        }
+
+        .foto-card .info-card .preco-card {
+            color: #a8d5a2;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .foto-card .info-card .categoria-tag {
+            display: inline-block;
+            background: rgba(45, 74, 34, 0.4);
+            color: rgba(255, 255, 255, 0.4);
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .sem-fotos {
+            grid-column: 1/-1;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.25);
+            padding: 60px 20px;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        /* ============================================
+           PAINEL ADMIN
+           ============================================ */
+        .pagina-admin {
+            display: none;
+            padding: 20px;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .pagina-admin::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 0;
+        }
+
+        .container-admin {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .container-admin h1 {
+            font-weight: 300;
+            font-size: 2rem;
+            text-align: center;
+            color: #a8d5a2;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .container-admin .sub-admin {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.35);
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+
+        .voltar-site {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: 'Georgia', serif;
+        }
+
+        .voltar-site:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* DROP ZONE */
+        .drop-zone {
+            border: 2px dashed rgba(255, 255, 255, 0.10);
+            border-radius: 16px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .drop-zone:hover {
+            border-color: rgba(168, 213, 162, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .drop-zone .icon {
+            font-size: 2.8rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .drop-zone p {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .drop-zone .sub-text {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.8rem;
+        }
+
+        .btn-upload {
+            background: #2d4a22;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-upload:hover {
+            background: #3a6030;
+            transform: scale(1.02);
+        }
+
+        /* FORM */
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            color: white;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #2d4a22;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(45, 74, 34, 0.15);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        .form-group select option {
+            background: #1a1a1a;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .btn-salvar {
+            background: #2d4a22;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .btn-salvar:hover {
+            background: #3a6030;
+            transform: scale(1.01);
+        }
+
+        .btn-excluir {
+            background: #5a1a1a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 8px;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+
+        .btn-excluir:hover {
+            background: #7a2222;
+        }
+
+        .btn-cancelar {
+            background: #333;
+            color: rgba(255, 255, 255, 0.6);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 8px;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+
+        .btn-cancelar:hover {
+            background: #444;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .preview-area {
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .preview-area img {
+            max-width: 100%;
+            max-height: 250px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            object-fit: cover;
+        }
+
+        .feedback {
+            padding: 10px 16px;
+            border-radius: 10px;
+            margin: 10px 0;
+            display: none;
+            font-size: 0.9rem;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .feedback.success {
+            display: block;
+            background: rgba(45, 74, 34, 0.25);
+            color: #a8d5a2;
+            border: 1px solid rgba(45, 74, 34, 0.2);
+        }
+
+        .feedback.error {
+            display: block;
+            background: rgba(90, 26, 26, 0.25);
+            color: #ff6b6b;
+            border: 1px solid rgba(90, 26, 26, 0.2);
+        }
+
+        .lista-fotos {
+            margin-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding-top: 20px;
+        }
+
+        .lista-fotos h3 {
+            font-weight: 300;
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .foto-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            margin-bottom: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .foto-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.04);
+        }
+
+        .foto-item img {
+            width: 45px;
+            height: 45px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .foto-item .info-item {
+            flex: 1;
+        }
+
+        .foto-item .info-item h4 {
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .foto-item .info-item .preco-item {
+            color: #a8d5a2;
+            font-size: 0.8rem;
+        }
+
+        .foto-item .delete-item {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.15);
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            padding: 4px 8px;
+        }
+
+        .foto-item .delete-item:hover {
+            color: #ff6b6b;
+        }
+
+        .sem-fotos-admin {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.2);
+            padding: 30px 0;
+            font-style: italic;
+            font-size: 0.9rem;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        /* ============================================
+           MODAL DA FOTO
+           ============================================ */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(16px);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-box {
+            background: rgba(25, 25, 25, 0.97);
+            max-width: 700px;
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            position: relative;
+            max-height: 95vh;
+            overflow-y: auto;
+        }
+
+        .modal-box img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .modal-box .modal-body {
+            padding: 25px;
+        }
+
+        .modal-box .modal-body h2 {
+            color: white;
+            font-weight: 300;
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+        }
+
+        .modal-box .modal-body .modal-especie {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .modal-box .modal-body .modal-local {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+
+        .modal-box .modal-body .modal-desc {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            font-style: italic;
+            border-left: 3px solid #2d4a22;
+            padding-left: 16px;
+            margin: 12px 0;
+        }
+
+        .modal-box .modal-body .modal-preco {
+            color: #a8d5a2;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .modal-box .modal-body .modal-comprar {
+            background: #2d4a22;
+            color: white;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            margin-top: 10px;
+            font-family: 'Georgia', serif;
+        }
+
+        .modal-box .modal-body .modal-comprar:hover {
+            background: #3a6030;
+            transform: scale(1.02);
+        }
+
+        .modal-fechar {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .modal-fechar:hover {
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        /* ============================================
+           RESPONSIVO
+           ============================================ */
+        @media (max-width: 768px) {
+            .conteudo-principal h1 {
+                font-size: 3.2rem;
+                letter-spacing: 5px;
+            }
+            .btn-galeria {
+                padding: 14px 35px;
+                font-size: 1rem;
+            }
+            .conteudo-principal .subtitulo {
+                font-size: 0.95rem;
+            }
+            .topo-galeria h1 {
+                font-size: 1.6rem;
+            }
+            .grid-fotos {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            .container-admin {
+                padding: 16px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .container-admin h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .conteudo-principal h1 {
+                font-size: 2.4rem;
+                letter-spacing: 3px;
+            }
+            .btn-galeria {
+                padding: 12px 28px;
+                font-size: 0.9rem;
+            }
+            .conteudo-principal .subtitulo {
+                font-size: 0.85rem;
+                letter-spacing: 2px;
+            }
+            .conteudo-principal {
+                padding: 20px;
+            }
+            .grid-fotos {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .foto-card img {
+                height: 130px;
+            }
+            .topo-galeria {
+                flex-direction: column;
+                text-align: center;
+            }
+            .modal-box .modal-body {
+                padding: 16px;
+            }
+            .modal-box .modal-body h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+    PÁGINA PRINCIPAL (EXEMPLO.png)
+    ============================================ -->
+    <div id="paginaPrincipal" class="pagina-principal">
+        <div class="conteudo-principal">
+            <h1>LUZ DA NATUREZA</h1>
+            <div class="linha"></div>
+            <p class="subtitulo">"A beleza está nos detalhes que a natureza esconde"</p>
+            <button class="btn-galeria" onclick="mostrarGaleria()">
+                🌿 Clique para mais imagens
+            </button>
+        </div>
+        <div class="rodape">Fotografia • Natureza • Alma</div>
+    </div>
+
+    <!-- ============================================
+    PÁGINA DA GALERIA
+    ============================================ -->
+    <div id="paginaGaleria" class="pagina-galeria">
+        <div class="container-galeria">
+            <div class="topo-galeria">
+                <button class="voltar" onclick="mostrarPrincipal()">← Voltar</button>
+                <div>
+                    <h1>📸 Galeria</h1>
+                    <span class="sub">Clique em uma foto para ver os detalhes</span>
+                </div>
+                <button class="btn-admin" onclick="mostrarAdmin()">⚙️ Admin</button>
+            </div>
+
+            <div class="grid-fotos" id="gridFotos">
+                <!-- As fotos aparecerão aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+    PAINEL ADMIN
+    ============================================ -->
+    <div id="paginaAdmin" class="pagina-admin">
+        <div class="container-admin">
+            <button class="voltar-site" onclick="mostrarGaleria()">← Voltar para Galeria</button>
+
+            <h1>🌿 Painel da Artista</h1>
+            <p class="sub-admin">Gerencie suas fotos de forma simples</p>
+
+            <div id="feedback" class="feedback"></div>
+
+            <!-- DROP ZONE -->
+            <div class="drop-zone" id="dropZone">
+                <span class="icon">📸</span>
+                <p>Arraste suas fotos aqui</p>
+                <span class="sub-text">ou clique para selecionar</span>
+                <input type="file" id="fileInput" multiple accept="image/*" style="display:none" />
+                <br />
+                <button class="btn-upload" onclick="document.getElementById('fileInput').click()">
+                    Selecionar Fotos
+                </button>
+            </div>
+
+            <!-- EDITOR -->
+            <div id="editor" class="hidden">
+                <div class="preview-area">
+                    <img id="previewImg" src="" alt="Prévia" />
+                </div>
+
+                <div class="form-group">
+                    <label>📷 Título *</label>
+                    <input type="text" id="titulo" placeholder="Ex: Sabiá na Chuva" />
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>🐦 Espécie</label>
+                        <input type="text" id="especie" placeholder="Ex: Turdus rufiventris" />
+                    </div>
+                    <div class="form-group">
+                        <label>📍 Local</label>
+                        <input type="text" id="local" placeholder="Ex: Serra do Mar" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>📅 Data</label>
+                        <input type="date" id="data" />
+                    </div>
+                    <div class="form-group">
+                        <label>💰 Preço (R$)</label>
+                        <input type="number" id="preco" placeholder="80" step="0.01" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>🏷️ Categoria</label>
+                    <select id="categoria">
+                        <option value="aves">🐦 Aves</option>
+                        <option value="flores">🌺 Flores</option>
+                        <option value="paisagens">🌅 Paisagens</option>
+                        <option value="insetos">🦋 Insetos</option>
+                        <option value="raridades">⭐ Raridades</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>📖 História da foto</label>
+                    <textarea id="descricao" placeholder="Conte a história por trás desta foto..."></textarea>
+                </div>
+
+                <button class="btn-salvar" onclick="salvarFoto()">💾 Salvar Foto</button>
+                <button class="btn-excluir" onclick="excluirFoto()">🗑️ Excluir esta foto</button>
+                <button class="btn-cancelar" onclick="cancelarEdicao()">✕ Cancelar edição</button>
+            </div>
+
+            <!-- LISTA -->
+            <div class="lista-fotos">
+                <h3>📋 Suas Fotos (<span id="totalFotos">0</span>)</h3>
+                <div id="listaFotos"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+    MODAL DA FOTO
+    ============================================ -->
+    <div class="modal-overlay" id="modalFoto" onclick="fecharModal(event)">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <button class="modal-fechar" onclick="fecharModal()">✕</button>
+            <img id="modalImg" src="" alt="Foto" />
+            <div class="modal-body">
+                <h2 id="modalTitulo">Título</h2>
+                <p class="modal-especie" id="modalEspecie">🐦 Espécie</p>
+                <p class="modal-local" id="modalLocal">📍 Local</p>
+                <p class="modal-desc" id="modalDesc">"Descrição da foto"</p>
+                <span class="modal-preco" id="modalPreco">R$ 0,00</span>
+                <br />
+                <button class="modal-comprar" onclick="alert('🛒 Em breve você poderá comprar!')">
+                    🛒 Quero esta foto
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // JAVASCRIPT COMPLETO
+        // ============================================
+
+        let fotos = [];
+        let fotoEditando = null;
+        let fotoModalId = null;
+
+        // ============================================
+        // NAVEGAÇÃO ENTRE PÁGINAS
+        // ============================================
+
+        function mostrarPrincipal() {
+            document.getElementById('paginaPrincipal').style.display = 'flex';
+            document.getElementById('paginaGaleria').style.display = 'none';
+            document.getElementById('paginaAdmin').style.display = 'none';
+        }
+
+        function mostrarGaleria() {
+            document.getElementById('paginaPrincipal').style.display = 'none';
+            document.getElementById('paginaGaleria').style.display = 'block';
+            document.getElementById('paginaAdmin').style.display = 'none';
+            carregarGaleria();
+        }
+
+        function mostrarAdmin() {
+            document.getElementById('paginaPrincipal').style.display = 'none';
+            document.getElementById('paginaGaleria').style.display = 'none';
+            document.getElementById('paginaAdmin').style.display = 'block';
+            carregarDadosAdmin();
+        }
+
+        // ============================================
+        // ADMIN - CARREGAR DADOS
+        // ============================================
+
+        function carregarDadosAdmin() {
+            const dados = localStorage.getItem('luzNaturezaFotos');
+            if (dados) {
+                fotos = JSON.parse(dados);
+            } else {
+                fotos = [
+                    {
+                        id: 1,
+                        titulo: 'Sabiá na Chuva',
+                        especie: 'Turdus rufiventris',
+                        local: 'Serra do Mar - SP',
+                        data: '2024-06-15',
+                        preco: '80',
+                        categoria: 'aves',
+                        descricao: 'Esperei 3 horas na chuva para capturar esse momento. O sabiá parecia estar tão feliz na água que esqueci do frio.',
+                        imagem: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%232d4a22"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-family="Georgia" font-size="24"%3E🌿 Sabiá%3C/text%3E%3C/svg%3E'
+                    },
+                    {
+                        id: 2,
+                        titulo: 'Gavião Real',
+                        especie: 'Harpia harpyja',
+                        local: 'Pantanal - MT',
+                        data: '2024-05-20',
+                        preco: '120',
+                        categoria: 'aves',
+                        descricao: 'O majestoso Gavião-Real é a ave de rapina mais poderosa das Américas.',
+                        imagem: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%231a3a2a"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-family="Georgia" font-size="24"%3E🦅 Gavião%3C/text%3E%3C/svg%3E'
+                    }
+                ];
+                salvarDadosAdmin();
+            }
+            renderizarListaAdmin();
+            atualizarContadorAdmin();
+        }
+
+        function salvarDadosAdmin() {
+            localStorage.setItem('luzNaturezaFotos', JSON.stringify(fotos));
+            atualizarContadorAdmin();
+            renderizarListaAdmin();
+        }
+
+        function atualizarContadorAdmin() {
+            document.getElementById('totalFotos').textContent = fotos.length;
+        }
+
+        // ============================================
+        // ADMIN - UPLOAD
+        // ============================================
+
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = '#a8d
