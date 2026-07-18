@@ -1,1 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ateliê Selvagem - Galeria de Natureza</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- FUNDO COM NATUREZA.PNG -->
+    <div class="fundo-natureza"></div>
+    
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="site-container">
+        
+        <!-- CABEÇALHO -->
+        <header class="header-site">
+            <div class="logo-site">
+                <h1>🌿 Ateliê Selvagem</h1>
+                <p class="tagline">500 instantes de vida selvagem</p>
+            </div>
+            <nav class="nav-site">
+                <a href="#galeria">Galeria</a>
+                <a href="#colecoes">Coleções</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#contato">Contato</a>
+                <button class="btn-carrinho" onclick="abrirCarrinho()">🛒 <span id="qtdCarrinho">0</span></button>
+            </nav>
+        </header>
 
+        <!-- HERO COM FUNDO NATUREZA -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Bem-vindo ao meu <span class="destaque">refúgio visual</span></h2>
+                <p>Através das minhas lentes, a natureza se revela em cada detalhe.<br>
+                Explore, inspire-se e leve um pedaço da floresta para casa.</p>
+                <div class="hero-stats">
+                    <span>📸 <strong>500+</strong> fotos</span>
+                    <span>🐦 <strong>85</strong> espécies</span>
+                    <span>🌎 <strong>12</strong> localidades</span>
+                </div>
+                <a href="#galeria" class="btn-explorar">Explorar Galeria ↓</a>
+            </div>
+        </section>
+
+        <!-- GALERIA -->
+        <section id="galeria" class="galeria-section">
+            <h2>📸 Galeria Completa</h2>
+            
+            <div class="filtros-site">
+                <button class="filtro-btn active" data-filtro="todas" onclick="filtrarSite('todas')">Todas</button>
+                <button class="filtro-btn" data-filtro="aves" onclick="filtrarSite('aves')">🐦 Aves</button>
+                <button class="filtro-btn" data-filtro="flores" onclick="filtrarSite('flores')">🌺 Flores</button>
+                <button class="filtro-btn" data-filtro="paisagens" onclick="filtrarSite('paisagens')">🌅 Paisagens</button>
+                <button class="filtro-btn" data-filtro="insetos" onclick="filtrarSite('insetos')">🦋 Insetos</button>
+                <button class="filtro-btn" data-filtro="raridades" onclick="filtrarSite('raridades')">⭐ Raridades</button>
+            </div>
+
+            <div class="grid-site" id="gridSite">
+                <!-- As fotos aparecerão aqui via JavaScript -->
+                <div class="loading">Carregando galeria...</div>
+            </div>
+
+            <div class="pagination-site" id="paginacaoSite"></div>
+        </section>
+
+        <!-- COLEÇÕES -->
+        <section id="colecoes" class="colecoes-section">
+            <h2>📚 Coleções Especiais</h2>
+            <div class="colecoes-grid">
+                <div class="colecao-card" style="background: linear-gradient(135deg, #2d4a22, #4a7a3a);">
+                    <span class="colecao-icon">🦅</span>
+                    <h3>Voos da Mata Atlântica</h3>
+                    <p>25 fotos de aves em voo</p>
+                    <button onclick="filtrarColecao('aves')">Ver coleção →</button>
+                </div>
+                <div class="colecao-card" style="background: linear-gradient(135deg, #8B4513, #D2691E);">
+                    <span class="colecao-icon">🌺</span>
+                    <h3>Cores do Pantanal</h3>
+                    <p>18 fotos de aves exóticas</p>
+                    <button onclick="filtrarColecao('aves')">Ver coleção →</button>
+                </div>
+                <div class="colecao-card" style="background: linear-gradient(135deg, #1a472a, #2d6a4f);">
+                    <span class="colecao-icon">🦋</span>
+                    <h3>Macro da Vida</h3>
+                    <p>30 fotos de insetos e flores</p>
+                    <button onclick="filtrarColecao('insetos')">Ver coleção →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOBRE -->
+        <section id="sobre" class="sobre-section">
+            <div class="sobre-content">
+                <div class="sobre-texto">
+                    <h2>📖 Sobre a Artista</h2>
+                    <div class="sobre-foto-artista">
+                        <!-- Coloque aqui uma foto dela se quiser -->
+                        <div class="avatar-placeholder">📸</div>
+                    </div>
+                    <p><strong>Bem-vindo ao meu mundo.</strong></p>
+                    <p>Sou ornitóloga por paixão e fotógrafa por necessidade de eternizar o que a natureza me ensina.</p>
+                    <p>Há mais de 6 anos percorro as matas brasileiras registrando a vida que muitas vezes não vemos. Cada clique é uma oração, cada foto é um pedaço de mim.</p>
+                    <p>Neste ateliê virtual, compartilho meu olhar com o mundo e, quem sabe, encontro novas formas de florescer.</p>
+                    <div class="sobre-redes">
+                        <a href="#">📷 Instagram</a>
+                        <a href="#">📧 Email</a>
+                        <a href="#">📱 WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTATO -->
+        <section id="contato" class="contato-section">
+            <h2>📬 Fale Comigo</h2>
+            <p>Quer uma foto especial? Uma encomenda? Vamos conversar!</p>
+            <div class="contato-info">
+                <div class="contato-item">
+                    <span>📧</span>
+                    <a href="mailto:contato@atelieselvagem.com">contato@atelieselvagem.com</a>
+                </div>
+                <div class="contato-item">
+                    <span>📱</span>
+                    <a href="tel:+5511999999999">(86) 99999-9999</a>
+                </div>
+                <div class="contato-item">
+                    <span>📍</span>
+                    <span>Brasil - Serra do Mar</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- RODAPÉ -->
+        <footer class="footer-site">
+            <p>🌿 Ateliê Selvagem - 2024 | Fotografando a natureza para eternizar a vida</p>
+            <p style="font-size:0.8rem; opacity:0.7;">Todas as imagens são protegidas por direitos autorais</p>
+        </footer>
+    </div>
+
+    <!-- MODAL DA FOTO (Lightbox) -->
+    <div class="modal" id="modalFoto">
+        <span class="modal-fechar" onclick="fecharModal()">✕</span>
+        <div class="modal-content">
+            <div class="modal-imagem">
+                <img id="modalImg" src="" alt="Foto">
+            </div>
+            <div class="modal-info">
+                <h2 id="modalTitulo">Título</h2>
+                <p><strong>🐦 Espécie:</strong> <span id="modalEspecie">-</span></p>
+                <p><strong>📍 Local:</strong> <span id="modalLocal">-</span></p>
+                <p><strong>📅 Data:</strong> <span id="modalData">-</span></p>
+                <p><strong>🏷️ Tags:</strong> <span id="modalTags">-</span></p>
+                <div class="modal-descricao">
+                    <strong>📖 História da foto:</strong>
+                    <p id="modalDescricao">-</p>
+                </div>
+                <div class="modal-preco">
+                    <span class="preco-grande" id="modalPreco">R$ 0,00</span>
+                    <button class="btn-comprar" onclick="adicionarAoCarrinho()">🛒 Adicionar ao Carrinho</button>
+                </div>
+                <div class="modal-opcoes">
+                    <button onclick="comprarDigital()">💻 Digital HD</button>
+                    <button onclick="comprarImpressao()">🖼️ Impressão A4</button>
+                    <button onclick="comprarQuadro()">🖼️ Quadro Emoldurado</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CARRINHO -->
+    <div class="modal" id="modalCarrinho">
+        <span class="modal-fechar" onclick="fecharCarrinho()">✕</span>
+        <div class="modal-content carrinho-content">
+            <h2>🛒 Seu Carrinho</h2>
+            <div id="itensCarrinho">
+                <p style="color:#999;">Seu carrinho está vazio</p>
+            </div>
+            <div class="carrinho-total">
+                <strong>Total: R$ <span id="totalCarrinho">0,00</span></strong>
+                <button class="btn-finalizar" onclick="finalizarCompra()">✅ Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/galeria.js"></script>
+</body>
+</html>
