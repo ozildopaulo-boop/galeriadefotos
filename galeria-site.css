@@ -1,0 +1,881 @@
+/* ============================================
+   ATELIÊ SELVAGEM - ESTILO DO SITE
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    color: #2d2d2d;
+    position: relative;
+    min-height: 100vh;
+    background: #1a1a1a;
+}
+
+/* ============================================
+   FUNDO COM NATUREZA.PNG
+   ============================================ */
+
+.fundo-natureza {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-image: url('../natureza.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: blur(2px) brightness(0.7);
+    transform: scale(1.05);
+}
+
+/* ============================================
+   CONTEÚDO SOBRE O FUNDO
+   ============================================ */
+
+.site-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* ============================================
+   GLASSMORPHISM - EFEITO VITRO
+   ============================================ */
+
+.header-site,
+.hero,
+.galeria-section,
+.colecoes-section,
+.sobre-section,
+.contato-section,
+.footer-site {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
+}
+
+/* ============================================
+   CABEÇALHO
+   ============================================ */
+
+.header-site {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo-site h1 {
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 300;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.logo-site .tagline {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.nav-site {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-site a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+.nav-site a:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-carrinho {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.btn-carrinho:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+
+.hero {
+    text-align: center;
+    padding: 80px 40px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hero-content h2 {
+    color: #ffffff;
+    font-size: 3rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.hero-content .destaque {
+    color: #a8d5a2;
+    font-weight: 600;
+}
+
+.hero-content p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.hero-stats span {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+}
+
+.hero-stats strong {
+    color: #ffffff;
+    font-size: 1.4rem;
+}
+
+.btn-explorar {
+    display: inline-block;
+    background: linear-gradient(135deg, #2d4a22, #4a7a3a);
+    color: white;
+    padding: 14px 40px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(45, 74, 34, 0.4);
+}
+
+.btn-explorar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(45, 74, 34, 0.6);
+}
+
+/* ============================================
+   GALERIA
+   ============================================ */
+
+.galeria-section h2 {
+    color: #ffffff;
+    font-weight: 300;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.filtros-site {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.filtro-btn {
+    padding: 8px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.filtro-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+.filtro-btn.active {
+    background: #2d4a22;
+    border-color: #2d4a22;
+    color: white;
+}
+
+.grid-site {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.grid-site .loading {
+    grid-column: 1/-1;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 40px;
+}
+
+.foto-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.foto-item:hover {
+    transform: translateY(-6px);
+    border-color: #4a7a3a;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+
+.foto-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.foto-item .info-item {
+    padding: 12px 16px;
+}
+
+.foto-item .info-item h4 {
+    color: #ffffff;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+.foto-item .info-item .preco-item {
+    color: #a8d5a2;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.foto-item .categoria-tag {
+    display: inline-block;
+    background: rgba(45, 74, 34, 0.6);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 2px 12px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    margin-top: 4px;
+}
+
+.pagination-site {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.pagination-site button {
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.pagination-site button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+.pagination-site button.active {
+    background: #2d4a22;
+    border-color: #2d4a22;
+    color: white;
+}
+
+/* ============================================
+   COLEÇÕES
+   ============================================ */
+
+.colecoes-section h2 {
+    color: #ffffff;
+    font-weight: 300;
+    font-size: 2rem;
+    margin-bottom: 25px;
+}
+
+.colecoes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.colecao-card {
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    color: white;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.colecao-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+
+.colecao-card .colecao-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.colecao-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+.colecao-card p {
+    opacity: 0.8;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.colecao-card button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 8px 24px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+}
+
+.colecao-card button:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+/* ============================================
+   SOBRE
+   ============================================ */
+
+.sobre-section {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.sobre-content {
+    display: flex;
+    justify-content: center;
+}
+
+.sobre-texto {
+    max-width: 700px;
+    text-align: center;
+}
+
+.sobre-texto h2 {
+    color: #ffffff;
+    font-weight: 300;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.sobre-foto-artista {
+    margin: 0 auto 20px;
+}
+
+.avatar-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.sobre-texto p {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.8;
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+}
+
+.sobre-redes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.sobre-redes a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: 8px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+
+.sobre-redes a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* ============================================
+   CONTATO
+   ============================================ */
+
+.contato-section h2 {
+    color: #ffffff;
+    font-weight: 300;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.contato-section > p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 25px;
+}
+
+.contato-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.contato-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px 24px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contato-item span {
+    font-size: 1.4rem;
+}
+
+.contato-item a,
+.contato-item span:last-child {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+}
+
+.contato-item a:hover {
+    color: #a8d5a2;
+}
+
+/* ============================================
+   RODAPÉ
+   ============================================ */
+
+.footer-site {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.footer-site p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   MODAL (LIGHTBOX)
+   ============================================ */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    animation: fadeInModal 0.3s ease;
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-fechar {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 1001;
+}
+
+.modal-fechar:hover {
+    transform: rotate(90deg);
+    color: #a8d5a2;
+}
+
+.modal-content {
+    background: rgba(30, 30, 30, 0.95);
+    border-radius: 20px;
+    max-width: 1100px;
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.modal-imagem {
+    background: #1a1a1a;
+    border-radius: 20px 0 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    min-height: 400px;
+}
+
+.modal-imagem img {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+.modal-info {
+    padding: 30px;
+    color: white;
+}
+
+.modal-info h2 {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 15px;
+    color: #a8d5a2;
+}
+
+.modal-info p {
+    margin: 8px 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+}
+
+.modal-info strong {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+}
+
+.modal-descricao {
+    margin: 15px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border-left: 3px solid #2d4a22;
+}
+
+.modal-descricao p {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    margin-top: 5px;
+}
+
+.modal-preco {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.preco-grande {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #a8d5a2;
+}
+
+.btn-comprar {
+    background: #2d4a22;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-comprar:hover {
+    background: #3a6030;
+    transform: scale(1.05);
+}
+
+.modal-opcoes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.modal-opcoes button {
+    padding: 8px 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.85rem;
+}
+
+.modal-opcoes button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+/* ============================================
+   MODAL CARRINHO
+   ============================================ */
+
+.carrinho-content {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    padding: 30px;
+}
+
+.carrinho-content h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+#itensCarrinho {
+    color: rgba(255, 255, 255, 0.8);
+    min-height: 100px;
+}
+
+.item-carrinho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.item-carrinho .item-nome {
+    color: white;
+}
+
+.item-carrinho .item-preco {
+    color: #a8d5a2;
+    font-weight: 600;
+}
+
+.item-carrinho .btn-remover {
+    background: none;
+    border: none;
+    color: #ff6b6b;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.carrinho-total {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.carrinho-total strong {
+    color: white;
+    font-size: 1.3rem;
+}
+
+.btn-finalizar {
+    background: #2d4a22;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-finalizar:hover {
+    background: #3a6030;
+    transform: scale(1.05);
+}
+
+/* ============================================
+   RESPONSIVIDADE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .header-site {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .nav-site {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+    
+    .hero-stats {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .grid-site {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+    }
+    
+    .modal-content {
+        grid-template-columns: 1fr;
+        max-height: 95vh;
+        border-radius: 16px;
+        width: 98%;
+    }
+    
+    .modal-imagem {
+        border-radius: 16px 16px 0 0;
+        min-height: 200px;
+    }
+    
+    .modal-fechar {
+        top: 10px;
+        right: 20px;
+        font-size: 2rem;
+    }
+    
+    .modal-info {
+        padding: 20px;
+    }
+    
+    .modal-preco {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .colecoes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contato-info {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filtros-site {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-site {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    
+    .foto-item img {
+        height: 140px;
+    }
+    
+    .hero {
+        padding: 40px 20px;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.6rem;
+    }
+    
+    .site-container {
+        padding: 10px;
+    }
+    
+    .header-site,
+    .hero,
+    .galeria-section,
+    .colecoes-section,
+    .sobre-section,
+    .contato-section,
+    .footer-site {
+        padding: 15px;
+        border-radius: 12px;
+    }
+}
